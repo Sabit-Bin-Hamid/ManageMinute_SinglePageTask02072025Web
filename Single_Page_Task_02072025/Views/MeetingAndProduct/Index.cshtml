@@ -20,6 +20,10 @@
     }
     <form asp-action="Index" method="post">
         <div class="container mt-4">
+            @if (!ViewData.ModelState.IsValid && ViewData.ModelState.ErrorCount > 0)
+            {
+             <div asp-validation-summary="All" class="alert alert-danger" role="alert"></div>
+            }
             <partial name="Partials/_MeetingForm" model="Model" />
             <partial name="Partials/_ProductService" model="Model" />
             <partial name="Partials/_ProductListTable" model="Model" />
