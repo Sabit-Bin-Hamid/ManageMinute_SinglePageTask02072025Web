@@ -43,10 +43,8 @@ namespace Single_Page_Task_02072025.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(MeetingMinuteViewDTO meetingMinuteView)
         {
-            if (meetingMinuteView?.Meeting == null)
-            {
-                ModelState.AddModelError("", "Invalid form.");
-            }
+            if (meetingMinuteView?.Meeting == null) ModelState.AddModelError("Meeting", "Invalid form.");
+            if(meetingMinuteView.Meeting.CustomerId<1) ModelState.AddModelError("Meeting.CustomerId", "Customer Name is required");
             if (!ModelState.IsValid)
             {
                 ViewBag.ProductList = await _context.Set<ProductService>().AsNoTracking().ToListAsync();
