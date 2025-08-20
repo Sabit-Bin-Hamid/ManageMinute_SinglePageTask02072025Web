@@ -1,0 +1,91 @@
+﻿@model MeetingMinuteViewDTO
+
+<div class="card shadow">
+    <div class="card-header d-flex justify-content-between align-items-center bg-light">
+        <h5 class="mb-0">Meeting Minutes</h5>
+        <a href="#" class="text-secondary"><i class="bi bi-pencil-square"></i></a>
+    </div>
+
+    <div class="card-body">
+        <div class=" row mb-3 mt-2 border-bottom pb-2">
+            <div class="col-md-10 d-flex align-items-center">
+                <div class="form-check me-3">
+                    <input asp-for="Meeting.CustomerType" type="radio" id="custCorporate" value="Corporate" class="form-check-input" />
+                    <label class="form-check-label" for="custCorporate">Corporate</label>
+
+                </div>
+                <div class="form-check">
+                    <input asp-for="Meeting.CustomerType" type="radio" id="custIndividual" value="Individual" class="form-check-input" />
+                    <label class="form-check-label" for="custIndividual">Individual</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-md-2 col-form-label ">Customer Name <span class="text-danger">*</span></label>
+            <div class="col-md-4">
+                <select asp-for="Meeting.CustomerId" id="customerDropdown" class="form-select form-select-sm">
+                    <option value="" disabled selected hidden>Select customer name</option>
+                </select>
+
+                <span asp-validation-for="Meeting.CustomerId" class="text-danger"></span>
+            </div>
+
+            <label class="col-md-2 col-form-label ">Meeting Agenda <span class="text-danger">*</span></label>
+            <div class="col-md-4">
+                <textarea asp-for="Meeting.MeetingAgenda" class="form-control" placeholder="Meeting agenda"></textarea>
+                <span asp-validation-for="Meeting.MeetingAgenda" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-md-1 col-form-label ">Date</label>
+            <div class="col-md-2">
+                <input asp-for="Meeting.MeetingDate" type="date" class="form-control" />
+                <span asp-validation-for="Meeting.MeetingDate" class="text-danger"></span>
+            </div>
+
+            <label class="col-md-1 col-form-label ">Time </label>
+            <div class="col-md-2">
+                <input asp-for="Meeting.MeetingTime" type="time" class="form-control"
+                       value="@(Model?.Meeting?.MeetingTime.HasValue == true ? Model.Meeting.MeetingTime.Value.ToString(@"hh\:mm") : "")" />
+                <span asp-validation-for="Meeting.MeetingTime" class="text-danger"></span>
+            </div>
+
+            <label class="col-md-2 col-form-label ">Meeting Discussion <span class="text-danger">*</span></label>
+            <div class="col-md-4">
+                <textarea asp-for="Meeting.MeetingDiscussion" class="form-control" placeholder="Meeting discussion"></textarea>
+                <span asp-validation-for="Meeting.MeetingDiscussion" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-md-2 col-form-label ">Meeting Place <span class="text-danger">*</span></label>
+            <div class="col-md-4">
+                <input asp-for="Meeting.MeetingPlace" class="form-control" placeholder="Meeting place" />
+                <span asp-validation-for="Meeting.MeetingPlace" class="text-danger"></span>
+            </div>
+
+            <label class="col-md-2 col-form-label ">Meeting Decision<span class="text-danger">*</span></label>
+            <div class="col-md-4">
+                <textarea asp-for="Meeting.MeetingDecision" class="form-control" placeholder="Meeting decision"></textarea>
+                <span asp-validation-for="Meeting.MeetingDecision" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-md-2 col-form-label ">Attends From Client Side<span class="text-danger">*</span></label>
+            <div class="col-md-4">
+                <textarea asp-for="Meeting.AttendsFromClientSide" class="form-control" placeholder="Present client side"></textarea>
+                <span asp-validation-for="Meeting.AttendsFromClientSide" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="col-md-2 col-form-label ">Attends From Host Side <span class="text-danger">*</span></label>
+            <div class="col-md-4">
+                <textarea asp-for="Meeting.AttendsFromHostSide" class="form-control" placeholder="Present self side"></textarea>
+                <span asp-validation-for="Meeting.AttendsFromHostSide" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+﻿@model MeetingMinuteViewDTO
+
+<div class="card shadow mb-2 mt-2">
+    <div class="card-body">
+        <div style="max-height: 200px; overflow-y: auto;">
+            <table class="table table-bordered" id="detailsTable">
+                <thead class="table-light">
+                    <tr>
+                        <th>SL#</th>
+                        <th>Product/Service</th>
+                        <th>Quantity</th>
+                        <th>Unit</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Details != null && Model.Details.Any())
+                    {
+                        for (int i = 0; i < Model.Details.Count; i++)
+                        {
+                            <tr>
+                                <td>@(i + 1)</td>
+                                <td>
+                                    <input type="hidden" asp-for="Details[@i].ProductServiceId" />
+                                    @Model.Details[i].ProductService?.Name
+                                </td>
+                                <td>
+                                    <input asp-for="Details[@i].Quantity" class="form-control" />
+                                </td>
+                                <td>
+                                    <input asp-for="Details[@i].Unit" class="form-control" readonly />
+                                </td>
+                                <td><button type="button" class="btn btn-sm btn-warning">Edit</button></td>
+                                <td><button type="button" class="btn btn-sm btn-danger">Delete</button></td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center">No matching records found</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

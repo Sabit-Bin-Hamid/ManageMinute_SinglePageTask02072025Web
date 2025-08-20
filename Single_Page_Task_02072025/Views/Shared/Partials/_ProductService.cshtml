@@ -1,0 +1,34 @@
+﻿@model MeetingMinuteViewDTO
+
+<div class="card shadow mb-1 mt-2">
+    <div class="card-body">
+        <div class="row mb-5">
+            <label asp-for="SelectedProductId" class="col-md-2 col-form-label">Interested Product/Service</label>
+            <div class="col-md-5">
+                <select asp-for="SelectedProductId" class="form-select form-select-sm" id="productDropdown">
+                    <option value="" disabled selected hidden>Select product/service</option>
+                    @foreach (var product in ViewBag.ProductList)
+                    {
+                        <option value="@product.ProductServiceId" data-unit="@product.Unit">@product.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <label asp-for="Quantity" class="col-md-2 col-form-label">Quantity</label>
+            <div class="col-md-2">
+                <input asp-for="Quantity" type="number" id="quantityInput" class="form-control" />
+            </div>
+            <label asp-for="Unit" class="col-md-1 col-form-label text-end">Unit</label>
+            <div class="col-md-2">
+                <input asp-for="Unit" type="text" id="unitInput" class="form-control" readonly />
+            </div>
+        </div>
+
+        <button type="button" id="addProductBtn" class="btn btn-outline-primary mb-2">
+            <i class="bi bi-plus-square"></i> Add
+        </button>
+        <div id="rowError" class="text-danger small mt-2"></div>
+    </div>
+</div>
